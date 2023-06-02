@@ -5,7 +5,10 @@
                     Safaa Khan , 2110828 ,B0B*/
                     package GraphFramework;
 
+                    import java.util.ArrayList;
+                    import java.util.Collections;
                     import java.util.HashMap;
+                    import java.util.List;
                     import java.util.Map;
                     
                     public class DBAllSourceSPAlg extends ShortestPathAlgorithm {
@@ -39,6 +42,7 @@
                              String noroute ="";
                            for (Map.Entry<Integer, Map<Integer, Edge>> entry : allShortestPaths.entrySet()) {
                                 int outerKey = entry.getKey();
+                             
                         Map<Integer, Edge> innerMap = entry.getValue();
                         System.out.println("The starting point location is  "+(char)(Integer.parseInt(getGraph().getVertex()[ outerKey].getLabel())+65) );
                         
@@ -46,50 +50,97 @@
                                
                                System.out.println();
                                
-                               
+                              int x =0; 
                              int value=0;
                              int innerKey =0;
-                             int point =0;        
-                             for (int j=0;j<innerMap.size();j++){ 
-                                  getGraph().getVertex()[ outerKey].displayInfo(); 
+                             Edge edge=null;  
+                              Vertex vextex=null;
+                                Vertex path [] ;
                                 
-                              
-                              int ind=0;
-                             
+                                
+                                
                            for (Map.Entry<Integer, Edge> innerEntry : innerMap.entrySet()) {
-                            
+                              path =new Vertex [getGraph().getVertex().length];
                              innerKey = innerEntry.getKey();
-                             value = innerEntry.getValue().getWeight();
-                                
-                          
-                                     getGraph().getVertex()[ innerKey].displayInfo();
-                                    
-                                   
-                           
-                                 if (ind==point){
-                                       break ;
-                                   }
-                                
-                                   ind++;     
-                            } 
-                                  
-                                  
+                             
                               
-                                  
-                                   
-                    
-                               System.out.println("route length: "+ value);
+                             while (innerKey!=Integer.parseInt(getGraph().getVertex()[x].getLabel())){
+                                 getGraph().getVertex()[  outerKey].displayInfo();
+                                  System.out.print(" - ");
+                                  getGraph().getVertex()[x].displayInfo();
+                                         
+                                   System.out.println(" --- impossible\n");
+                                   x++;
+                                 
+                             }
+                              x++;
+                             value = innerEntry.getValue().getWeight();
+                              edge = innerEntry.getValue();
+                                
+                                            Vertex target = getGraph().getVertex()[ innerKey];
+                                             vextex =edge.getParent();
+                                             
+                                             int i =0 ;
+                                              if (vextex !=null){
+                                                  // this aeey for get all parents of vertex 
+                                             path[0]=vextex ;
+                                             
+                                             
+                                             i++;
+                                             //reverse the map to simplyfy get  path procecsing  
+                                             List<Map.Entry<Integer, Edge>> reversedEntries = new ArrayList<>(innerMap.entrySet());
+                                                   Collections.reverse(reversedEntries);
+                                              
+                                             for (Map.Entry<Integer, Edge> inner : reversedEntries) {
+                                                     int key = inner.getKey();
+                                                      edge = inner.getValue();
+                                                if (vextex !=null)
+                                                 if ( key ==Integer.parseInt(vextex .getLabel())){
+                                                    
+                                                     if (edge.getParent()!=null){
+                                                       path [i]=edge.getParent();
+                                                               i++;
+                                                               vextex=edge.getParent();
+                                                     }
+                     
+                                             }
+                                             }
+                           /// to ensure that the path start feom sourse vertex                  
+                         if ( ! path [i-1].getLabel().equals(getGraph().getVertex()[ outerKey].getLabel()))
+                                                 path[i]=getGraph().getVertex()[ outerKey];
+                                for (int j=path.length-1;j>=0;j--){
+                                    if (path[j]!=null){
+                                 path[j].displayInfo();
+                                 System.out.print(" - ");
+                                    }
+                                    
+                                }
+                                              }
+                                target.displayInfo();
+                               System.out.println("--- route length: "+ value);
                                System.out.println("\n");
+                            
+                              
                                
-                                 point++;
-                              }
+                             }
+                              if(innerKey!=Integer.parseInt(getGraph().getVertex()[getGraph().getVertex().length-1].getLabel())){
+                                 getGraph().getVertex()[  outerKey].displayInfo();
+                                  System.out.print(" - ");
+                                  getGraph().getVertex()[x].displayInfo();
+                                         
+                                   System.out.println(" --- impossible\n"); 
+                                   
+                             }
+                            
+                            
+                              
                               System.out.println("\n----------------------------------------------------------------------------------------------------\n");
-                         
+                           }
+                       }
                     }
                           
-                       }
+                       
                     
-                    }
                     
                     
                     

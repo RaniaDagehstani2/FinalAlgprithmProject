@@ -30,7 +30,31 @@ public class Location extends Vertex  {
   @Override
   //overrite displayInfo() method from Vertex class
     public void displayInfo(){
-        System.out.print("loc. " + (char)(Integer.parseInt(getLabel())+65)+" : city " );
+          city =" city: ";
+        
+            if (Integer.parseInt(getLabel())==0)
+             city +=5;
+            else  if (Integer.parseInt(getLabel())==1)
+              city+=2;
+            else  if (Integer.parseInt(getLabel())==2)
+              city+=8;
+            else  if (Integer.parseInt(getLabel())==3)
+              city+=1;
+           else  if (Integer.parseInt(getLabel())==4)
+              city+=3;
+             else  if (Integer.parseInt(getLabel())==5)
+              city+=4;
+          else  if (Integer.parseInt(getLabel())==6)
+              city+=6;
+            else  if (Integer.parseInt(getLabel())==7)
+              city+=7;
+          else  if (Integer.parseInt(getLabel())==8)
+             city+=9;
+           else  if (Integer.parseInt(getLabel())==9)
+              city+=10;
+            
+            
+        System.out.print("loc. " + (char)(Integer.parseInt(getLabel())+65)+city );
         
     } 
     
