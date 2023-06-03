@@ -11,7 +11,8 @@ public class AirFreightApp {
    
     public static void main(String[] args) throws FileNotFoundException {
       //create object of    AFRouteMap
-    AFRouteMap  g =new  AFRouteMap();    
+    AFRouteMap  g =new  AFRouteMap(); 
+        g.setisDirected(true);
     DBAllSourceSPAlg dijkstra;      
  int n = 0, m = 0, MenuChoice = -1;
         Scanner in = new Scanner(System.in);
