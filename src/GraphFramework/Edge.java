@@ -7,7 +7,7 @@ package GraphFramework;
 For Prim Algorithm :https://www.learnerslesson.com/Data-Structures-and-Algorithms/Prim's-Algorithm-Minimum-Spanning-Tree-Code.htm
 For Kruskal Algoritm :https://www.learnerslesson.com/Data-Structures-and-Algorithms/Prim's-Algorithm-Minimum-Spanning-Tree-Code.htm*/
 
-
+//edge class
 public class Edge implements Comparable<Edge>{
     //declear the attribute 
     private Vertex source;
